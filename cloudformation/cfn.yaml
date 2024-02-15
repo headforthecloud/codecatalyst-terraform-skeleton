@@ -1,0 +1,18 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Deploy SNS'
+
+Parameters:
+
+  OwnerName:
+    Type: String
+    Default: ""
+  
+
+Resources:
+    MySNSTopic:
+      Type: "AWS::SNS::Topic"
+      Properties:
+        DisplayName: "My SNS Topic"
+        Tags:
+             - Key:   Owner
+               Value: !Ref OwnerName

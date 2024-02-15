@@ -1,0 +1,3 @@
+# Add entries for a terraform project
+.terraform*
+*.tfstate
