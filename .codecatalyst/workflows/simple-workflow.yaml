@@ -6,7 +6,7 @@ Triggers: []
 
 # Required - Define action configurations.
 Actions:
-  Build_b9:
+  hello_world:
     # Identifies the action. Do not modify this value.
     Identifier: aws/build@v1.0.0
     # Specifies the source and/or artifacts to pass to the action as input.
