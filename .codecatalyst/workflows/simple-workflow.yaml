@@ -27,7 +27,7 @@ Actions:
         - Run: echo "Hello, World!"
     Compute:
       Type: Lambda
-  RunCommandInTest:
+  RunAWSCLIinTest:
     # Identifies the action. Do not modify this value.
     Identifier: aws/build@v1.0.0
     # Specifies the source and/or artifacts to pass to the action as input.
@@ -45,7 +45,7 @@ Actions:
     Configuration:
       # Required - Steps are sequential instructions that run shell commands
       Steps:
-        - Run: aws sts get-caller-identity | cut -d2-5
+        - Run: aws sts get-caller-identity --query Account | cut -c2-5
     Compute:
       Type: EC2
     Environment:
@@ -53,7 +53,7 @@ Actions:
         - Role: CodeCatalystWorkflowDevelopmentRole-h4tc-ccdemo
           Name: test
       Name: test
-  RunCommandInLive:
+  RunAWSCLIinLive:
     Identifier: aws/build@v1.0.0
     Inputs:
       Sources:
@@ -64,7 +64,7 @@ Actions:
         ReportNamePrefix: rpt
     Configuration:
       Steps:
-        - Run: aws sts get-caller-identity | cut -d2-5
+        - Run: aws sts get-caller-identity --query Account | cut -c2-5
     Compute:
       Type: EC2
     Environment:
