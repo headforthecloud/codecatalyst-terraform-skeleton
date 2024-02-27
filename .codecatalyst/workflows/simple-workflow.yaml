@@ -27,3 +27,35 @@ Actions:
         - Run: echo "Hello, World!"
     Compute:
       Type: Lambda
+  DeployCFNinTest:
+    # Identifies the action. Do not modify this value.
+    Identifier: aws/cfn-deploy@v1.0.5
+    # Defines the action's properties.
+    Configuration:
+      template: ./cloudformation/cfn.yaml
+      region: eu-west-2
+      name: TestCFNStack
+    Environment:
+      Connections:
+        - Role: CodeCatalystWorkflowDevelopmentRole-h4tc-ccdemo
+          Name: test
+      Name: test
+    # Specifies the source and/or artifacts to pass to the action as input.
+    Inputs:
+      # Optional
+      Sources:
+        - WorkflowSource # This specifies that the action requires this Workflow as a source
+  DeployCFNinLive:
+    Identifier: aws/cfn-deploy@v1.0.5
+    Configuration:
+      template: ./cloudformation/cfn.yaml
+      region: eu-west-2
+      name: TestCFNStack
+    Environment:
+      Connections:
+        - Role: CodeCatalystWorkflowDevelopmentRole-h4tc-ccdemo
+          Name: live
+      Name: live
+    Inputs:
+      Sources:
+        - WorkflowSource
